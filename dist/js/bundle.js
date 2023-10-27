@@ -198,10 +198,11 @@ __webpack_require__.r(__webpack_exports__);
 
 
 class ReviewsSlider extends _slider__WEBPACK_IMPORTED_MODULE_0__.Slider {
-    constructor(container, slides, dotsContainer, dots) {
+    constructor(container, slides, dotsContainer, dots, line) {
         super(container, slides);
         this.dotsContainer = document.querySelector(dotsContainer);
         this.dots = document.querySelectorAll(dots);
+        this.line = document.querySelector(line);
     }
 
     changeSlide(num) {
@@ -212,19 +213,30 @@ class ReviewsSlider extends _slider__WEBPACK_IMPORTED_MODULE_0__.Slider {
 
     }
 
+    dotsHandler(target) {
+        this.dots.forEach((dot, i) => {
+            dot.classList.remove('active'); 
+            if (dot === target.closest('.reviews__dots-slide')) {
+                dot.classList.add('active');
+                this.changeSlide(i);
+                this.moveLine(i);
+            };
+        });
+    }
+
+    moveLine(n) {
+        const gap = parseInt(window.getComputedStyle(this.dotsContainer).rowGap);
+        const width = parseInt(window.getComputedStyle(this.dots[0]).width);
+        this.line.style.left = `${(gap + width) * n}px`;
+    }
+
     initHandler() {
         this.dotsContainer.addEventListener('click', (e) => {
             const target = e.target;
 
             if (target && target.closest('.reviews__dots-slide')) {
-                this.dots.forEach((dot, i) => {
-                    dot.classList.remove('active'); 
-                    if (dot === target.closest('.reviews__dots-slide')) {
-                        dot.classList.add('active');
-                        this.changeSlide(i);
-                    };
-                });
-            }
+                this.dotsHandler(target);
+            };
         });
     }
 }
@@ -356,7 +368,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
 new _modules_mainSlider__WEBPACK_IMPORTED_MODULE_1__.MainSLider('.wrapper', '.section', '.nav', '.nav__item').initHandler();
 new _modules_designSlider__WEBPACK_IMPORTED_MODULE_2__.DesignSLider('.designs__slider-box', '.designs__slide', '.designs__slider-arrows').initHandlers();
-new _modules_reviewsSlider__WEBPACK_IMPORTED_MODULE_3__.ReviewsSlider('.reviews__slider-main', '.reviews__main-slide', '.reviews__slider-dots', '.reviews__dots-slide').initHandler();
+new _modules_reviewsSlider__WEBPACK_IMPORTED_MODULE_3__.ReviewsSlider('.reviews__slider-main', '.reviews__main-slide', '.reviews__slider-dots', '.reviews__dots-slide','.slider-line').initHandler();
 new _modules_hoverSkate__WEBPACK_IMPORTED_MODULE_4__.Hover('.main__img', 'images/main-photo.png', 'images/griptape.png').initHandler();
 new _modules_features__WEBPACK_IMPORTED_MODULE_5__.Features('.line-dot', '.line-skew', '.features__item-descr').initHandler();
 });
