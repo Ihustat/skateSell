@@ -12,10 +12,16 @@
     &__slider
         background: url('../images/designs/design-bg.jpg') center center/cover no-repeat
         position: relative
+        width: 300px
+        overflow-x: clip
+        &-box
+            display: flex
+            align-items: start
+            transition: all .3s
         &-arrows    
             position: absolute
             bottom: -30px
-            right: -20px
+            right: 0px
             height: 68px
             background-color: #fff
             display: flex
