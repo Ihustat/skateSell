@@ -12,13 +12,11 @@ export class Slider {
 
         if (this.counter > this.slides.length - 1) this.counter = 0;
         if (this.counter < 0) this.counter = this.slides.length - 1;
-
-        console.log(this.counter);
     }
 
     countDimensions() {
         this.slideHeight = parseInt(window.getComputedStyle(this.slides[0]).height);
-        this.slideWidth = parseInt(window.getComputedStyle(this.slides[1]).width);
+        this.slideWidth = parseInt(window.getComputedStyle(this.slides[0]).width);
 
     }
 

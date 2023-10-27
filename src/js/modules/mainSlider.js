@@ -3,6 +3,7 @@ import { Slider } from "./slider";
 export class MainSLider extends Slider {
     constructor(container, slides) {
         super(container, slides);
+        this.slideHeight = parseInt(window.getComputedStyle(this.slides[0]).height);
     }
 
     checkCounter(n) {

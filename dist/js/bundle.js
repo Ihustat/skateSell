@@ -59,6 +59,7 @@ __webpack_require__.r(__webpack_exports__);
 class MainSLider extends _slider__WEBPACK_IMPORTED_MODULE_0__.Slider {
     constructor(container, slides) {
         super(container, slides);
+        this.slideHeight = parseInt(window.getComputedStyle(this.slides[0]).height);
     }
 
     checkCounter(n) {
@@ -89,6 +90,53 @@ class MainSLider extends _slider__WEBPACK_IMPORTED_MODULE_0__.Slider {
 
 /***/ }),
 
+/***/ "./src/js/modules/reviewsSlider.js":
+/*!*****************************************!*\
+  !*** ./src/js/modules/reviewsSlider.js ***!
+  \*****************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   ReviewsSlider: () => (/* binding */ ReviewsSlider)
+/* harmony export */ });
+/* harmony import */ var _slider__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./slider */ "./src/js/modules/slider.js");
+
+
+class ReviewsSlider extends _slider__WEBPACK_IMPORTED_MODULE_0__.Slider {
+    constructor(container, slides, dotsContainer, dots) {
+        super(container, slides);
+        this.dotsContainer = document.querySelector(dotsContainer);
+        this.dots = document.querySelectorAll(dots);
+    }
+
+    changeSlide(num) {
+        this.slides.forEach((slide, i) => {
+            slide.classList.remove('active');
+            if (num === i) slide.classList.add('active');
+        });
+
+    }
+
+    initHandler() {
+        this.dotsContainer.addEventListener('click', (e) => {
+            const target = e.target;
+
+            if (target && target.closest('.reviews__dots-slide')) {
+                this.dots.forEach((dot, i) => {
+                    dot.classList.remove('active'); 
+                    if (dot === target.closest('.reviews__dots-slide')) {
+                        dot.classList.add('active');
+                        this.changeSlide(i);
+                    };
+                });
+            }
+        });
+    }
+}
+
+/***/ }),
+
 /***/ "./src/js/modules/slider.js":
 /*!**********************************!*\
   !*** ./src/js/modules/slider.js ***!
@@ -113,13 +161,11 @@ class Slider {
 
         if (this.counter > this.slides.length - 1) this.counter = 0;
         if (this.counter < 0) this.counter = this.slides.length - 1;
-
-        console.log(this.counter);
     }
 
     countDimensions() {
         this.slideHeight = parseInt(window.getComputedStyle(this.slides[0]).height);
-        this.slideWidth = parseInt(window.getComputedStyle(this.slides[1]).width);
+        this.slideWidth = parseInt(window.getComputedStyle(this.slides[0]).width);
 
     }
 
@@ -199,6 +245,9 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _modules_slider__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./modules/slider */ "./src/js/modules/slider.js");
 /* harmony import */ var _modules_mainSlider__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./modules/mainSlider */ "./src/js/modules/mainSlider.js");
 /* harmony import */ var _modules_designSlider__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./modules/designSlider */ "./src/js/modules/designSlider.js");
+/* harmony import */ var _modules_reviewsSlider__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./modules/reviewsSlider */ "./src/js/modules/reviewsSlider.js");
+
+
 
 
 
@@ -209,6 +258,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
 new _modules_mainSlider__WEBPACK_IMPORTED_MODULE_1__.MainSLider('.wrapper', '.section').initHandler();
 new _modules_designSlider__WEBPACK_IMPORTED_MODULE_2__.DesignSLider('.designs__slider-box', '.designs__slide', '.designs__slider-arrows').initHandlers();
+new _modules_reviewsSlider__WEBPACK_IMPORTED_MODULE_3__.ReviewsSlider('.reviews__slider-main', '.reviews__main-slide', '.reviews__slider-dots', '.reviews__dots-slide').initHandler();
 
 });
 })();
