@@ -12,6 +12,9 @@ const avif          = require("gulp-avif");
 const webp          = require("gulp-webp"); 
 const imagemin      = require("gulp-imagemin"); 
 const newer         = require("gulp-newer"); 
+const webpack       = require('webpack');
+const webpackStream = require('webpack-stream');
+const webpackConfig = require('./webpack.config.js');
 
 function images() {
     return src(['src/images/**/*.*', '!src/images/**/*.svg'])
@@ -39,12 +42,10 @@ function styles() {
 
 
 function scripts() {
-    return src('src/js/**/*.js')
-            .pipe(uglify())
-            .pipe(rename({suffix: '.min', prefix: ''}))
-            .pipe(dest('dist/js'))
+    return src('src/js/*.js')
             .pipe(browserSync.stream());
 };
+
 
 
 
@@ -61,11 +62,20 @@ function fonts() {
            .pipe(browserSync.stream());
 };
 
+
+function webpacker() {
+    return src('src/js/**/*.js')
+           .pipe(webpackStream(webpackConfig), webpack)
+           .pipe(dest('dist/js/'))
+};
+
+
 function watching() {
     watch(['src/*.html'], html).on('change', browserSync.reload);
     watch(['src/fonts/**/*'], fonts);
     watch(['src/sass/**/*.+(scss|sass|css)'], styles);
     watch(['src/js/**/*.js'], scripts);
+    watch(['src/js/**/*.js'], webpacker);
     watch(['src/images/**'], images);
 };
 
@@ -89,6 +99,7 @@ exports.fonts = fonts;
 exports.images = images;
 exports.watching = watching;
 exports.browsersync = browsersync;
+exports.webpacker = webpacker;
 exports.clean = clean;
 
-exports.default = parallel(html, fonts, styles, scripts, images, browsersync, watching);
+exports.default = parallel(html, fonts, styles, scripts, webpacker, images, browsersync, watching);
