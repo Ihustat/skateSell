@@ -15,8 +15,6 @@ const newer         = require("gulp-newer");
 
 function images() {
     return src(['src/images/**/*.*', '!src/images/**/*.svg'])
-           .pipe(newer('dist/images'))
-           .pipe(avif({quality: 50}))
 
            .pipe(newer('dist/images'))
            .pipe(src('src/images/**/*.*'))

@@ -1,0 +1,25 @@
+.header
+    position: fixed
+    top: 50px
+    width: 100vw
+    z-index: 100
+    @include backdrop-blur
+    &__wrapper
+        display: flex
+        justify-content: space-between
+        align-items: center
+    .logo
+        padding: 10px
+        font-size: 18px
+        font-family: $graffiti
+        &__img
+            width: 54px
+            height: 27px
+    .nav .nav__list
+        padding: 10px
+        display: flex
+        gap: 20px
+        align-items: center
+        .nav__link
+            font-size: 15px
+            text-transform: uppercase
