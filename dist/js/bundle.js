@@ -43,6 +43,45 @@ class DesignSLider extends _slider__WEBPACK_IMPORTED_MODULE_0__.Slider {
 
 /***/ }),
 
+/***/ "./src/js/modules/hoverSkate.js":
+/*!**************************************!*\
+  !*** ./src/js/modules/hoverSkate.js ***!
+  \**************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   Hover: () => (/* binding */ Hover)
+/* harmony export */ });
+class Hover {
+    constructor(object, src1, src2) {
+        this.object = document.querySelector(object);
+        this.src1 = src1;
+        this.src2 = src2;
+    }
+
+    rotate() {
+        this.object.classList.toggle('hover');
+
+        // if (this.object.classList.contais('hover')) {
+        //     this.object.src = this.src2;
+        // } else {
+        //     this.object.src = this.src1;
+        // };
+
+        setTimeout(() => {
+            this.object.classList.contains('hover') ? this.object.src = this.src2 : this.object.src = this.src1;
+        }, 500)
+    }
+
+    initHandler() {
+        this.object.addEventListener('mouseover', this.rotate.bind(this));
+        this.object.addEventListener('mouseout', this.rotate.bind(this));
+    }
+}
+
+/***/ }),
+
 /***/ "./src/js/modules/mainSlider.js":
 /*!**************************************!*\
   !*** ./src/js/modules/mainSlider.js ***!
@@ -246,6 +285,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _modules_mainSlider__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./modules/mainSlider */ "./src/js/modules/mainSlider.js");
 /* harmony import */ var _modules_designSlider__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./modules/designSlider */ "./src/js/modules/designSlider.js");
 /* harmony import */ var _modules_reviewsSlider__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./modules/reviewsSlider */ "./src/js/modules/reviewsSlider.js");
+/* harmony import */ var _modules_hoverSkate__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./modules/hoverSkate */ "./src/js/modules/hoverSkate.js");
+
 
 
 
@@ -259,7 +300,7 @@ document.addEventListener('DOMContentLoaded', () => {
 new _modules_mainSlider__WEBPACK_IMPORTED_MODULE_1__.MainSLider('.wrapper', '.section').initHandler();
 new _modules_designSlider__WEBPACK_IMPORTED_MODULE_2__.DesignSLider('.designs__slider-box', '.designs__slide', '.designs__slider-arrows').initHandlers();
 new _modules_reviewsSlider__WEBPACK_IMPORTED_MODULE_3__.ReviewsSlider('.reviews__slider-main', '.reviews__main-slide', '.reviews__slider-dots', '.reviews__dots-slide').initHandler();
-
+new _modules_hoverSkate__WEBPACK_IMPORTED_MODULE_4__.Hover('.main__img', 'images/main-photo.png', 'images/griptape.png').initHandler();
 });
 })();
 
