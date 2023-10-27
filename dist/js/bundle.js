@@ -129,14 +129,24 @@ __webpack_require__.r(__webpack_exports__);
 
 
 class MainSLider extends _slider__WEBPACK_IMPORTED_MODULE_0__.Slider {
-    constructor(container, slides) {
+    constructor(container, slides, navMenu, navItems) {
         super(container, slides);
+        this.navMenu = document.querySelector(navMenu);
+        this.navItems = document.querySelectorAll(navItems);
         this.slideHeight = parseInt(window.getComputedStyle(this.slides[0]).height);
     }
 
     checkCounter(n) {
         this.counter += n;
         if (this.counter > this.slides.length - 1 || this.counter < 0) this.counter -= n;
+    }
+
+    setActiveNav(n) {
+        this.navItems.forEach(item => {
+            item.classList.remove('active');
+        });
+
+        this.navItems[n].classList.add('active');
     }
 
     scrollHandler(e) {
@@ -148,6 +158,7 @@ class MainSLider extends _slider__WEBPACK_IMPORTED_MODULE_0__.Slider {
             this.changeSlide(-1, this.slideHeight, 'Y');
         };
 
+        this.setActiveNav(this.counter);
 
         setTimeout(() => {
             this.initHandler();
@@ -156,6 +167,17 @@ class MainSLider extends _slider__WEBPACK_IMPORTED_MODULE_0__.Slider {
 
      initHandler() {
         document.addEventListener('wheel', this.scrollHandler.bind(this),  {once: true });
+
+        this.navItems.forEach((item, i) => {
+            item.addEventListener('click', (e) => {
+                e.preventDefault();
+
+                this.counter = 0;
+
+                this.changeSlide(i, this.slideHeight, 'Y');
+                this.setActiveNav(i);
+            });
+        });
      }
 
 }
@@ -332,7 +354,7 @@ __webpack_require__.r(__webpack_exports__);
 
 document.addEventListener('DOMContentLoaded', () => {
 
-new _modules_mainSlider__WEBPACK_IMPORTED_MODULE_1__.MainSLider('.wrapper', '.section').initHandler();
+new _modules_mainSlider__WEBPACK_IMPORTED_MODULE_1__.MainSLider('.wrapper', '.section', '.nav', '.nav__item').initHandler();
 new _modules_designSlider__WEBPACK_IMPORTED_MODULE_2__.DesignSLider('.designs__slider-box', '.designs__slide', '.designs__slider-arrows').initHandlers();
 new _modules_reviewsSlider__WEBPACK_IMPORTED_MODULE_3__.ReviewsSlider('.reviews__slider-main', '.reviews__main-slide', '.reviews__slider-dots', '.reviews__dots-slide').initHandler();
 new _modules_hoverSkate__WEBPACK_IMPORTED_MODULE_4__.Hover('.main__img', 'images/main-photo.png', 'images/griptape.png').initHandler();

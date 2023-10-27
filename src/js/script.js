@@ -10,7 +10,7 @@ import { Features } from "./modules/features";
 
 document.addEventListener('DOMContentLoaded', () => {
 
-new MainSLider('.wrapper', '.section').initHandler();
+new MainSLider('.wrapper', '.section', '.nav', '.nav__item').initHandler();
 new DesignSLider('.designs__slider-box', '.designs__slide', '.designs__slider-arrows').initHandlers();
 new ReviewsSlider('.reviews__slider-main', '.reviews__main-slide', '.reviews__slider-dots', '.reviews__dots-slide').initHandler();
 new Hover('.main__img', 'images/main-photo.png', 'images/griptape.png').initHandler();
