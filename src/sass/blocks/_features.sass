@@ -4,6 +4,14 @@
         position: absolute
         top: 0
         left: -150%
+        transition: all .3s
+        &-descr
+            opacity: 0
+            transition: all .3s
+            transition-delay: 0s
+            &.active
+                opacity: 1
+                transition-delay: .3s
         &-text
             margin-top: 10px
     &__wrapper
@@ -26,26 +34,33 @@
         right: -50%
         bottom: -70%
         z-index: 5
+        cursor: pointer
     .line-skew
-        width: 60%
+        width: 1%
         height: 3px
         background-color: #fff
         position: absolute
         right: -50%
-        bottom: -10%
+        bottom: -63%
         transform: rotate(30deg)
+        transition: all .3s
+        &.active
+            width: 60%
+            bottom: -10%
     .features__item_tr
         right: -150%
         left: auto
         .line-dot
             right: auto
-            left: -65%
-            bottom: -93%
+            left: -63%
+            bottom: -86%
         .line-skew
             right: auto
-            left: -66%
-            bottom: -33%
+            left: -63%
+            bottom: -86%
             transform: rotate(-30deg)
+            &.active
+                bottom: -28%
     .features__item_mr
         right: -169%
         top: 26%
@@ -56,9 +71,12 @@
             bottom: -93%
         .line-skew
             right: auto
-            left: -66%
-            bottom: -33%
+            left: -61%
+            bottom: -83%
             transform: rotate(-30deg)
+            &.active
+                left: -66%
+                bottom: -33%
     .features__item_bl
         top: auto
         bottom: 29%

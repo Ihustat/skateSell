@@ -43,6 +43,39 @@ class DesignSLider extends _slider__WEBPACK_IMPORTED_MODULE_0__.Slider {
 
 /***/ }),
 
+/***/ "./src/js/modules/features.js":
+/*!************************************!*\
+  !*** ./src/js/modules/features.js ***!
+  \************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   Features: () => (/* binding */ Features)
+/* harmony export */ });
+class Features {
+    constructor(dots, lines, text) {
+        this.dots = document.querySelectorAll(dots);
+        this.lines = document.querySelectorAll(lines);
+        this.text = document.querySelectorAll(text);
+    }
+
+    showContent(i) {
+        this.lines[i].classList.toggle('active');
+        this.text[i].classList.toggle('active');
+    }
+
+    initHandler() {
+        this.dots.forEach((dot, i) => {
+            dot.addEventListener('click', () => {
+                this.showContent(i);
+            });
+        });
+    }
+}
+
+/***/ }),
+
 /***/ "./src/js/modules/hoverSkate.js":
 /*!**************************************!*\
   !*** ./src/js/modules/hoverSkate.js ***!
@@ -286,6 +319,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _modules_designSlider__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./modules/designSlider */ "./src/js/modules/designSlider.js");
 /* harmony import */ var _modules_reviewsSlider__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./modules/reviewsSlider */ "./src/js/modules/reviewsSlider.js");
 /* harmony import */ var _modules_hoverSkate__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./modules/hoverSkate */ "./src/js/modules/hoverSkate.js");
+/* harmony import */ var _modules_features__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./modules/features */ "./src/js/modules/features.js");
+
 
 
 
@@ -301,6 +336,7 @@ new _modules_mainSlider__WEBPACK_IMPORTED_MODULE_1__.MainSLider('.wrapper', '.se
 new _modules_designSlider__WEBPACK_IMPORTED_MODULE_2__.DesignSLider('.designs__slider-box', '.designs__slide', '.designs__slider-arrows').initHandlers();
 new _modules_reviewsSlider__WEBPACK_IMPORTED_MODULE_3__.ReviewsSlider('.reviews__slider-main', '.reviews__main-slide', '.reviews__slider-dots', '.reviews__dots-slide').initHandler();
 new _modules_hoverSkate__WEBPACK_IMPORTED_MODULE_4__.Hover('.main__img', 'images/main-photo.png', 'images/griptape.png').initHandler();
+new _modules_features__WEBPACK_IMPORTED_MODULE_5__.Features('.line-dot', '.line-skew', '.features__item-descr').initHandler();
 });
 })();
 
