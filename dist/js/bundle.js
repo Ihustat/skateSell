@@ -150,24 +150,23 @@ class MainSLider extends _slider__WEBPACK_IMPORTED_MODULE_0__.Slider {
     }
 
     scrollHandler(e) {
-        if (e.deltaY === 100) {
-            this.changeSlide(1, this.slideHeight, 'Y');
-          };
-        
-          if (e.deltaY === -100) {
-            this.changeSlide(-1, this.slideHeight, 'Y');
+        if (e.target.tagName !== 'YMAPS') {
+            if (e.deltaY === 100) {
+                this.changeSlide(1, this.slideHeight, 'Y');
+              };
+            
+              if (e.deltaY === -100) {
+                this.changeSlide(-1, this.slideHeight, 'Y');
+            };
+    
+            this.setActiveNav(this.counter);
         };
-
-        this.setActiveNav(this.counter);
-
         setTimeout(() => {
             this.initHandler();
         }, 300);
      }
 
-     initHandler() {
-        document.addEventListener('wheel', this.scrollHandler.bind(this),  {once: true });
-
+     clickHandler() {
         this.navItems.forEach((item, i) => {
             item.addEventListener('click', (e) => {
                 e.preventDefault();
@@ -180,7 +179,105 @@ class MainSLider extends _slider__WEBPACK_IMPORTED_MODULE_0__.Slider {
         });
      }
 
+     initHandler() {
+        document.addEventListener('wheel', this.scrollHandler.bind(this),  {once: true });
+
+        this.clickHandler();
+     }
+
 }
+
+/***/ }),
+
+/***/ "./src/js/modules/map.js":
+/*!*******************************!*\
+  !*** ./src/js/modules/map.js ***!
+  \*******************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   Map: () => (/* binding */ Map)
+/* harmony export */ });
+class Map {
+    constructor(mapContainer, shops) {
+        this.mapContainer = document.querySelector(mapContainer);
+        this.shops = document.querySelectorAll(shops);
+        this.shopsData = [{
+            coords: [45.041738, 38.977373],
+            title: 'Cherdak',
+            descr: 'SkateShop',
+            img: 'images/map/map-1.jpg',
+            tel: '0-000-000-00-00',
+            info: 'Cool',
+            hint: 'Padval skateshop'
+        },
+        {
+            coords: [45.056053, 38.978960],
+            title: 'Tropa',
+            descr: 'SkateShop',
+            img: 'images/map/map-2.jpg',
+            tel: '0-000-000-00-00',
+            info: 'Cool',
+            hint: 'Tropa skateshop'
+        },
+        {
+            coords: [45.032477, 39.000349],
+            title: 'Tochka',
+            descr: 'SkateShop',
+            img: 'images/map/map-3.jpg',
+            tel: '0-000-000-00-00',
+            info: 'Cool',
+            hint: 'Tochka skateshop'
+        }];
+    }
+
+    createMap(container, shops, shopsData, addMarker) {
+        ymaps.ready(function() {
+            let map = new ymaps.Map(container, {
+                center: [45.068962, 38.992622],
+                zoom: 10,
+                controls: ['zoomControl', 'geolocationControl']
+            });
+
+            shopsData.forEach(shop => {
+                addMarker(map, shop);
+            });
+
+            shops.forEach(shop => {
+                shop.addEventListener('click', (e) => {
+                    const target = e.target.closest('.place');
+                    if (target) {
+                        const coords =  [+target.dataset.long, +target.dataset.lat];
+                        map.setCenter(coords, 15);
+                    }
+                });
+            });
+
+        });
+    }
+
+    addMarker(mapContainer, obj) {
+
+        const {coords, title, descr, img, tel, info, hint} = obj;
+        const placemark = new ymaps.Placemark(coords, {
+            balloonContentHeader: `<a href = "#">${title}</a><br>
+            <span class="description">${descr}</span>`,
+            balloonContentBody: `<img src="${img}" height="150" width="200"> <br/> 
+            <a href="tel:+${tel}">${tel}</a><br/>
+            <b>${info}</b> <br/>`,
+            hintContent: `${hint}`
+        });
+
+        mapContainer.geoObjects.add(placemark);
+    }
+
+
+    initMap() {
+        this.createMap(this.mapContainer, this.shops, this.shopsData, this.addMarker)
+    }
+
+};
 
 /***/ }),
 
@@ -348,12 +445,12 @@ var __webpack_exports__ = {};
   !*** ./src/js/script.js ***!
   \**************************/
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _modules_slider__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./modules/slider */ "./src/js/modules/slider.js");
-/* harmony import */ var _modules_mainSlider__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./modules/mainSlider */ "./src/js/modules/mainSlider.js");
-/* harmony import */ var _modules_designSlider__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./modules/designSlider */ "./src/js/modules/designSlider.js");
-/* harmony import */ var _modules_reviewsSlider__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./modules/reviewsSlider */ "./src/js/modules/reviewsSlider.js");
-/* harmony import */ var _modules_hoverSkate__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./modules/hoverSkate */ "./src/js/modules/hoverSkate.js");
-/* harmony import */ var _modules_features__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./modules/features */ "./src/js/modules/features.js");
+/* harmony import */ var _modules_mainSlider__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./modules/mainSlider */ "./src/js/modules/mainSlider.js");
+/* harmony import */ var _modules_designSlider__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./modules/designSlider */ "./src/js/modules/designSlider.js");
+/* harmony import */ var _modules_reviewsSlider__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./modules/reviewsSlider */ "./src/js/modules/reviewsSlider.js");
+/* harmony import */ var _modules_hoverSkate__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./modules/hoverSkate */ "./src/js/modules/hoverSkate.js");
+/* harmony import */ var _modules_features__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./modules/features */ "./src/js/modules/features.js");
+/* harmony import */ var _modules_map__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./modules/map */ "./src/js/modules/map.js");
 
 
 
@@ -362,15 +459,15 @@ __webpack_require__.r(__webpack_exports__);
 
 
 'use strict'
-
-
 document.addEventListener('DOMContentLoaded', () => {
 
-new _modules_mainSlider__WEBPACK_IMPORTED_MODULE_1__.MainSLider('.wrapper', '.section', '.nav', '.nav__item').initHandler();
-new _modules_designSlider__WEBPACK_IMPORTED_MODULE_2__.DesignSLider('.designs__slider-box', '.designs__slide', '.designs__slider-arrows').initHandlers();
-new _modules_reviewsSlider__WEBPACK_IMPORTED_MODULE_3__.ReviewsSlider('.reviews__slider-main', '.reviews__main-slide', '.reviews__slider-dots', '.reviews__dots-slide','.slider-line').initHandler();
-new _modules_hoverSkate__WEBPACK_IMPORTED_MODULE_4__.Hover('.main__img', 'images/main-photo.png', 'images/griptape.png').initHandler();
-new _modules_features__WEBPACK_IMPORTED_MODULE_5__.Features('.line-dot', '.line-skew', '.features__item-descr').initHandler();
+
+new _modules_mainSlider__WEBPACK_IMPORTED_MODULE_0__.MainSLider('.wrapper', '.section', '.nav', '.nav__item').initHandler();
+new _modules_designSlider__WEBPACK_IMPORTED_MODULE_1__.DesignSLider('.designs__slider-box', '.designs__slide', '.designs__slider-arrows').initHandlers();
+new _modules_reviewsSlider__WEBPACK_IMPORTED_MODULE_2__.ReviewsSlider('.reviews__slider-main', '.reviews__main-slide', '.reviews__slider-dots', '.reviews__dots-slide','.slider-line').initHandler();
+new _modules_hoverSkate__WEBPACK_IMPORTED_MODULE_3__.Hover('.main__img', 'images/main-photo.png', 'images/griptape.png').initHandler();
+new _modules_features__WEBPACK_IMPORTED_MODULE_4__.Features('.line-dot', '.line-skew', '.features__item-descr').initHandler();
+new _modules_map__WEBPACK_IMPORTED_MODULE_5__.Map('.map', '.place').initMap();
 });
 })();
 

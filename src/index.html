@@ -8,6 +8,10 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Lato:wght@400;700&family=Sedgwick+Ave+Display&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="css/style.min.css">
+    <script defer src="https://api-maps.yandex.ru/2.1/?apikey=835c12eb-20f4-444e-ace8-17873149ab7a&lang=ru_RU"
+    type="text/javascript">
+    </script>
+    <script defer src="js/bundle.js"></script>
 </head>
 <body>
 
@@ -221,43 +225,44 @@
 
                         <div class="buy__wrapper">
                             <div class="places">
-                                <div class="place">
+                                <div class="place" data-long="45.042742" data-lat="38.975199">
                                     <div class="place__name">
-                                        Padval
+                                        Cherdak
                                     </div>
 
                                     <div class="place__adress">
-                                        Chapaeva 140
+                                        ул. Хаккурате, 4
                                     </div>
                                 </div>
-                                <div class="place">
+                                <div class="place" data-long="45.056053" data-lat="38.978960">
                                     <div class="place__name">
-                                        Padval
+                                        Tropa
                                     </div>
-
                                     <div class="place__adress">
-                                        Chapaeva 140
+                                        ул. имени Дзержинского, 3/2
                                     </div>
                                 </div>
-                                <div class="place">
+                                <div class="place" data-long="45.032477" data-lat="39.000349">
                                     <div class="place__name">
-                                        Padval
+                                        Tochka
                                     </div>
-
                                     <div class="place__adress">
-                                        Chapaeva 140
+                                        ул. Будённого, 327
                                     </div>
                                 </div>
                             </div>
+                            <div id="map" class="map">
+
+                            </div>
                         </div>
 
-                        <div class="map"></div>
+
                     </div>
                 </section>
         </div>
     </div>
     
 
-    <script src="js/bundle.js"></script>
+
 </body>
 </html>

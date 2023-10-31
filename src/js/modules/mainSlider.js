@@ -22,24 +22,23 @@ export class MainSLider extends Slider {
     }
 
     scrollHandler(e) {
-        if (e.deltaY === 100) {
-            this.changeSlide(1, this.slideHeight, 'Y');
-          };
-        
-          if (e.deltaY === -100) {
-            this.changeSlide(-1, this.slideHeight, 'Y');
+        if (e.target.tagName !== 'YMAPS') {
+            if (e.deltaY === 100) {
+                this.changeSlide(1, this.slideHeight, 'Y');
+              };
+            
+              if (e.deltaY === -100) {
+                this.changeSlide(-1, this.slideHeight, 'Y');
+            };
+    
+            this.setActiveNav(this.counter);
         };
-
-        this.setActiveNav(this.counter);
-
         setTimeout(() => {
             this.initHandler();
         }, 300);
      }
 
-     initHandler() {
-        document.addEventListener('wheel', this.scrollHandler.bind(this),  {once: true });
-
+     clickHandler() {
         this.navItems.forEach((item, i) => {
             item.addEventListener('click', (e) => {
                 e.preventDefault();
@@ -50,6 +49,12 @@ export class MainSLider extends Slider {
                 this.setActiveNav(i);
             });
         });
+     }
+
+     initHandler() {
+        document.addEventListener('wheel', this.scrollHandler.bind(this),  {once: true });
+
+        this.clickHandler();
      }
 
 }
