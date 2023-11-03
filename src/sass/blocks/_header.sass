@@ -5,6 +5,7 @@
     z-index: 100
     @include backdrop-blur
     &__wrapper
+        padding: 5px
         display: flex
         justify-content: space-between
         align-items: center
@@ -15,26 +16,30 @@
         &__img
             width: 54px
             height: 27px
-    .nav .nav__list
-        padding: 10px
-        display: flex
-        gap: 20px
-        align-items: center
-        .nav__item
-            padding-bottom: 5px
-            position: relative
+.nav__list
+    padding: 10px
+    display: flex
+    gap: 20px
+    align-items: center
+    .nav__item
+        padding-bottom: 5px
+        position: relative
+        transition: all .3s
+        &::after
+            content: ''
+            position: absolute
+            bottom: 0
+            left: 0
+            width: 0
+            height: 3px
+            background-color: red
             transition: all .3s
-            &::after
-                content: ''
-                position: absolute
-                bottom: 0
-                left: 0
-                width: 0
-                height: 3px
-                background-color: red
-                transition: all .3s
-            &.active:after
-                width: 100%
-        .nav__link
-            font-size: 15px
-            text-transform: uppercase
+        &.active:after
+            width: 100%
+    .nav__link
+        font-size: 15px
+        text-transform: uppercase
+.burger
+    display: none
+    &__img
+        width: 51px

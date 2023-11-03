@@ -2,6 +2,38 @@
 /******/ 	"use strict";
 /******/ 	var __webpack_modules__ = ({
 
+/***/ "./src/js/modules/burger.js":
+/*!**********************************!*\
+  !*** ./src/js/modules/burger.js ***!
+  \**********************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   Burger: () => (/* binding */ Burger)
+/* harmony export */ });
+class Burger {
+    constructor(burger, menu) {
+        this.burger = document.querySelector(burger);
+        this.menu = document.querySelector(menu);
+    }
+
+    clickHandler() {
+        this.menu.classList.toggle('active');
+
+        const img = this.burger.querySelector('img');
+
+        this.menu.classList.contains('active') ? img.src = 'images/icons/break-burger-logo.png' : img.src = 'images/icons/burger-logo.png';
+
+    }
+
+    initHandler() {
+        this.burger.addEventListener('click', this.clickHandler.bind(this));
+    }
+}
+
+/***/ }),
+
 /***/ "./src/js/modules/designSlider.js":
 /*!****************************************!*\
   !*** ./src/js/modules/designSlider.js ***!
@@ -147,7 +179,8 @@ class MainSLider extends _slider__WEBPACK_IMPORTED_MODULE_0__.Slider {
     }
 
     changeHandler(e) {
-        if (e.target && e.target.tagName !== 'YMAPS') {
+        
+        if (!e.target.closest('nav') && e.target.tagName !== 'YMAPS') {
             if (e.deltaY === 100 || this.touchStart > this.touchEnd) {
                 this.changeSlide(1, this.slideHeight, 'Y');
               };
@@ -461,6 +494,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _modules_hoverSkate__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./modules/hoverSkate */ "./src/js/modules/hoverSkate.js");
 /* harmony import */ var _modules_features__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./modules/features */ "./src/js/modules/features.js");
 /* harmony import */ var _modules_map__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./modules/map */ "./src/js/modules/map.js");
+/* harmony import */ var _modules_burger__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./modules/burger */ "./src/js/modules/burger.js");
+
 
 
 
@@ -478,6 +513,7 @@ new _modules_mainSlider__WEBPACK_IMPORTED_MODULE_0__.MainSLider('.wrapper', '.se
 new _modules_hoverSkate__WEBPACK_IMPORTED_MODULE_3__.Hover('.main__img', 'images/main-photo.png', 'images/griptape.png').initHandler();
 // new Features('.line-dot', '.line-skew', '.features__item-descr').initHandler();
 // new Map('.map', '.place').initMap();
+new _modules_burger__WEBPACK_IMPORTED_MODULE_6__.Burger('.burger', '.nav').initHandler();
 });
 })();
 

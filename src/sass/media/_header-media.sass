@@ -1,0 +1,22 @@
+@media (max-width: 769px)
+    .nav
+        position: absolute
+        top: 0
+        right: -200%
+        z-index: -1
+        transition: all .3s
+        &.active
+            right: 0
+        &__list
+            flex-direction: column
+            justify-content: center
+            gap: 60px
+            width: 100vw
+            height: 100vh
+            background-color: rgba(0, 0, 0, .7)
+            .nav__link
+                font-size: 30px
+    .burger
+        display: block
+        position: relative
+        z-index: 500

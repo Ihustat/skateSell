@@ -24,7 +24,8 @@ export class MainSLider extends Slider {
     }
 
     changeHandler(e) {
-        if (e.target && e.target.tagName !== 'YMAPS') {
+        
+        if (!e.target.closest('nav') && e.target.tagName !== 'YMAPS') {
             if (e.deltaY === 100 || this.touchStart > this.touchEnd) {
                 this.changeSlide(1, this.slideHeight, 'Y');
               };
