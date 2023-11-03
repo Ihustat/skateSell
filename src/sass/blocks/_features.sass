@@ -32,7 +32,7 @@
         background-color: #000
         position: absolute
         right: -50%
-        bottom: -70%
+        bottom: -51%
         z-index: 5
         cursor: pointer
     .line-skew
@@ -40,8 +40,8 @@
         height: 3px
         background-color: #fff
         position: absolute
-        right: -50%
-        bottom: -63%
+        right: -48%
+        bottom: -41%
         transform: rotate(30deg)
         transition: all .3s
         &.active
@@ -56,8 +56,8 @@
             bottom: -86%
         .line-skew
             right: auto
-            left: -63%
-            bottom: -86%
+            left: -60%
+            bottom: -82%
             transform: rotate(-30deg)
             &.active
                 bottom: -28%
@@ -81,6 +81,13 @@
         top: auto
         bottom: 29%
         left: -159%
+        .line-dot
+            bottom: -70%
+        .line-skew
+            bottom: -64%
+            &.active
+                width: 48%
+                bottom: -22%
 
 
 

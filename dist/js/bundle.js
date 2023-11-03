@@ -96,12 +96,6 @@ class Hover {
     rotate() {
         this.object.classList.toggle('hover');
 
-        // if (this.object.classList.contais('hover')) {
-        //     this.object.src = this.src2;
-        // } else {
-        //     this.object.src = this.src1;
-        // };
-
         setTimeout(() => {
             this.object.classList.contains('hover') ? this.object.src = this.src2 : this.object.src = this.src1;
         }, 500)
@@ -110,6 +104,7 @@ class Hover {
     initHandler() {
         this.object.addEventListener('mouseover', this.rotate.bind(this));
         this.object.addEventListener('mouseout', this.rotate.bind(this));
+        this.object.addEventListener('touchstart', this.rotate.bind(this));
     }
 }
 
@@ -134,6 +129,8 @@ class MainSLider extends _slider__WEBPACK_IMPORTED_MODULE_0__.Slider {
         this.navMenu = document.querySelector(navMenu);
         this.navItems = document.querySelectorAll(navItems);
         this.slideHeight = parseInt(window.getComputedStyle(this.slides[0]).height);
+        this.touchStart;
+        this.touchEnd;
     }
 
     checkCounter(n) {
@@ -149,13 +146,13 @@ class MainSLider extends _slider__WEBPACK_IMPORTED_MODULE_0__.Slider {
         this.navItems[n].classList.add('active');
     }
 
-    scrollHandler(e) {
-        if (e.target.tagName !== 'YMAPS') {
-            if (e.deltaY === 100) {
+    changeHandler(e) {
+        if (e.target && e.target.tagName !== 'YMAPS') {
+            if (e.deltaY === 100 || this.touchStart > this.touchEnd) {
                 this.changeSlide(1, this.slideHeight, 'Y');
               };
             
-              if (e.deltaY === -100) {
+              if (e.deltaY === -100 || this.touchEnd > this.touchStart) {
                 this.changeSlide(-1, this.slideHeight, 'Y');
             };
     
@@ -164,6 +161,15 @@ class MainSLider extends _slider__WEBPACK_IMPORTED_MODULE_0__.Slider {
         setTimeout(() => {
             this.initHandler();
         }, 300);
+     }
+
+     touchStartHandler(e) {
+        this.touchStart = e.touches[0].clientY
+     }
+
+     touchEndHandler(e) {
+       this.touchEnd = e.changedTouches[0].clientY
+       this.changeHandler(e);
      }
 
      clickHandler() {
@@ -180,7 +186,11 @@ class MainSLider extends _slider__WEBPACK_IMPORTED_MODULE_0__.Slider {
      }
 
      initHandler() {
-        document.addEventListener('wheel', this.scrollHandler.bind(this),  {once: true });
+        document.addEventListener('wheel', this.changeHandler.bind(this),  {once: true });
+
+        document.addEventListener('touchstart', this.touchStartHandler.bind(this), {once: true });
+
+        document.addEventListener('touchend', this.touchEndHandler.bind(this), {once: true });
 
         this.clickHandler();
      }
@@ -463,11 +473,11 @@ document.addEventListener('DOMContentLoaded', () => {
 
 
 new _modules_mainSlider__WEBPACK_IMPORTED_MODULE_0__.MainSLider('.wrapper', '.section', '.nav', '.nav__item').initHandler();
-new _modules_designSlider__WEBPACK_IMPORTED_MODULE_1__.DesignSLider('.designs__slider-box', '.designs__slide', '.designs__slider-arrows').initHandlers();
-new _modules_reviewsSlider__WEBPACK_IMPORTED_MODULE_2__.ReviewsSlider('.reviews__slider-main', '.reviews__main-slide', '.reviews__slider-dots', '.reviews__dots-slide','.slider-line').initHandler();
+// new DesignSLider('.designs__slider-box', '.designs__slide', '.designs__slider-arrows').initHandlers();
+// new ReviewsSlider('.reviews__slider-main', '.reviews__main-slide', '.reviews__slider-dots', '.reviews__dots-slide','.slider-line').initHandler();
 new _modules_hoverSkate__WEBPACK_IMPORTED_MODULE_3__.Hover('.main__img', 'images/main-photo.png', 'images/griptape.png').initHandler();
-new _modules_features__WEBPACK_IMPORTED_MODULE_4__.Features('.line-dot', '.line-skew', '.features__item-descr').initHandler();
-new _modules_map__WEBPACK_IMPORTED_MODULE_5__.Map('.map', '.place').initMap();
+// new Features('.line-dot', '.line-skew', '.features__item-descr').initHandler();
+// new Map('.map', '.place').initMap();
 });
 })();
 

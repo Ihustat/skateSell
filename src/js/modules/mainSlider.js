@@ -6,6 +6,8 @@ export class MainSLider extends Slider {
         this.navMenu = document.querySelector(navMenu);
         this.navItems = document.querySelectorAll(navItems);
         this.slideHeight = parseInt(window.getComputedStyle(this.slides[0]).height);
+        this.touchStart;
+        this.touchEnd;
     }
 
     checkCounter(n) {
@@ -21,13 +23,13 @@ export class MainSLider extends Slider {
         this.navItems[n].classList.add('active');
     }
 
-    scrollHandler(e) {
-        if (e.target.tagName !== 'YMAPS') {
-            if (e.deltaY === 100) {
+    changeHandler(e) {
+        if (e.target && e.target.tagName !== 'YMAPS') {
+            if (e.deltaY === 100 || this.touchStart > this.touchEnd) {
                 this.changeSlide(1, this.slideHeight, 'Y');
               };
             
-              if (e.deltaY === -100) {
+              if (e.deltaY === -100 || this.touchEnd > this.touchStart) {
                 this.changeSlide(-1, this.slideHeight, 'Y');
             };
     
@@ -36,6 +38,15 @@ export class MainSLider extends Slider {
         setTimeout(() => {
             this.initHandler();
         }, 300);
+     }
+
+     touchStartHandler(e) {
+        this.touchStart = e.touches[0].clientY
+     }
+
+     touchEndHandler(e) {
+       this.touchEnd = e.changedTouches[0].clientY
+       this.changeHandler(e);
      }
 
      clickHandler() {
@@ -52,7 +63,11 @@ export class MainSLider extends Slider {
      }
 
      initHandler() {
-        document.addEventListener('wheel', this.scrollHandler.bind(this),  {once: true });
+        document.addEventListener('wheel', this.changeHandler.bind(this),  {once: true });
+
+        document.addEventListener('touchstart', this.touchStartHandler.bind(this), {once: true });
+
+        document.addEventListener('touchend', this.touchEndHandler.bind(this), {once: true });
 
         this.clickHandler();
      }
