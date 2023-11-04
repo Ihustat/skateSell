@@ -214,6 +214,7 @@ class MainSLider extends _slider__WEBPACK_IMPORTED_MODULE_0__.Slider {
 
                 this.changeSlide(i, this.slideHeight, 'Y');
                 this.setActiveNav(i);
+                document.querySelector('nav').classList.remove('active');
             });
         });
      }
@@ -293,6 +294,7 @@ class Map {
                     if (target) {
                         const coords =  [+target.dataset.long, +target.dataset.lat];
                         map.setCenter(coords, 15);
+                        target.querySelector('.place__tip').remove();
                     }
                 });
             });
@@ -353,6 +355,13 @@ class ReviewsSlider extends _slider__WEBPACK_IMPORTED_MODULE_0__.Slider {
 
     }
 
+    moveDots(i) {
+        this.counter = i;
+        const width = parseInt(window.getComputedStyle(this.dots[0]).width);
+
+        this.dotsContainer.style.transform = `translateX(-${width * this.counter}px)`
+    }
+
     dotsHandler(target) {
         this.dots.forEach((dot, i) => {
             dot.classList.remove('active'); 
@@ -360,6 +369,10 @@ class ReviewsSlider extends _slider__WEBPACK_IMPORTED_MODULE_0__.Slider {
                 dot.classList.add('active');
                 this.changeSlide(i);
                 this.moveLine(i);
+                
+                if (document.documentElement.offsetWidth < 769) {
+                    this.moveDots(i);
+                };
             };
         });
     }
@@ -367,7 +380,7 @@ class ReviewsSlider extends _slider__WEBPACK_IMPORTED_MODULE_0__.Slider {
     moveLine(n) {
         const gap = parseInt(window.getComputedStyle(this.dotsContainer).rowGap);
         const width = parseInt(window.getComputedStyle(this.dots[0]).width);
-        this.line.style.left = `${(gap + width) * n}px`;
+        this.line.style.left = `${(gap + width * 1.1) * n}px`;
     }
 
     initHandler() {
@@ -508,11 +521,11 @@ document.addEventListener('DOMContentLoaded', () => {
 
 
 new _modules_mainSlider__WEBPACK_IMPORTED_MODULE_0__.MainSLider('.wrapper', '.section', '.nav', '.nav__item').initHandler();
-// new DesignSLider('.designs__slider-box', '.designs__slide', '.designs__slider-arrows').initHandlers();
-// new ReviewsSlider('.reviews__slider-main', '.reviews__main-slide', '.reviews__slider-dots', '.reviews__dots-slide','.slider-line').initHandler();
+new _modules_designSlider__WEBPACK_IMPORTED_MODULE_1__.DesignSLider('.designs__slider-box', '.designs__slide', '.designs__slider-arrows').initHandlers();
+new _modules_reviewsSlider__WEBPACK_IMPORTED_MODULE_2__.ReviewsSlider('.reviews__slider-main', '.reviews__main-slide', '.reviews__slider-dots', '.reviews__dots-slide','.slider-line').initHandler();
 new _modules_hoverSkate__WEBPACK_IMPORTED_MODULE_3__.Hover('.main__img', 'images/main-photo.png', 'images/griptape.png').initHandler();
-// new Features('.line-dot', '.line-skew', '.features__item-descr').initHandler();
-// new Map('.map', '.place').initMap();
+new _modules_features__WEBPACK_IMPORTED_MODULE_4__.Features('.line-dot', '.line-skew', '.features__item-descr').initHandler();
+new _modules_map__WEBPACK_IMPORTED_MODULE_5__.Map('.map', '.place').initMap();
 new _modules_burger__WEBPACK_IMPORTED_MODULE_6__.Burger('.burger', '.nav').initHandler();
 });
 })();

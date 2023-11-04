@@ -16,6 +16,13 @@ export class ReviewsSlider extends Slider {
 
     }
 
+    moveDots(i) {
+        this.counter = i;
+        const width = parseInt(window.getComputedStyle(this.dots[0]).width);
+
+        this.dotsContainer.style.transform = `translateX(-${width * this.counter}px)`
+    }
+
     dotsHandler(target) {
         this.dots.forEach((dot, i) => {
             dot.classList.remove('active'); 
@@ -23,6 +30,10 @@ export class ReviewsSlider extends Slider {
                 dot.classList.add('active');
                 this.changeSlide(i);
                 this.moveLine(i);
+                
+                if (document.documentElement.offsetWidth < 769) {
+                    this.moveDots(i);
+                };
             };
         });
     }
@@ -30,7 +41,7 @@ export class ReviewsSlider extends Slider {
     moveLine(n) {
         const gap = parseInt(window.getComputedStyle(this.dotsContainer).rowGap);
         const width = parseInt(window.getComputedStyle(this.dots[0]).width);
-        this.line.style.left = `${(gap + width) * n}px`;
+        this.line.style.left = `${(gap + width * 1.1) * n}px`;
     }
 
     initHandler() {

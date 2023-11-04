@@ -49,6 +49,7 @@ export class Map {
                     if (target) {
                         const coords =  [+target.dataset.long, +target.dataset.lat];
                         map.setCenter(coords, 15);
+                        target.querySelector('.place__tip').remove();
                     }
                 });
             });

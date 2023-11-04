@@ -1,0 +1,29 @@
+@media (max-width: 1025px)
+    .buy
+        &__wrapper
+            margin-top: 30px
+            gap: 130px
+
+@media (max-width: 767px)
+    .buy
+        &__wrapper
+            flex-direction: column
+            gap: 15px
+        .places
+            gap: 25px
+        .place
+            &__name
+                font-size: 30px
+                line-height: 22px
+            &__adress
+                font-size: 20px
+                line-height: 20px
+            &__tip
+                transform: translateX(-30%)
+        .map
+            height: 50vh
+
+@media (max-width: 424px)
+    .buy .place__tip
+        width: 122px
+        top: -15px
