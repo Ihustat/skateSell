@@ -5,6 +5,7 @@ export class Burger {
     }
 
     clickHandler() {
+        
         this.menu.classList.toggle('active');
 
         const img = this.burger.querySelector('img');

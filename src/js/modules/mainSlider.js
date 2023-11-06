@@ -1,5 +1,5 @@
 import { Slider } from "./slider";
-
+import { Burger } from "./burger";
 export class MainSLider extends Slider {
     constructor(container, slides, navMenu, navItems) {
         super(container, slides);
@@ -59,7 +59,8 @@ export class MainSLider extends Slider {
 
                 this.changeSlide(i, this.slideHeight, 'Y');
                 this.setActiveNav(i);
-                document.querySelector('nav').classList.remove('active');
+
+                new Burger('.burger', '.nav').clickHandler();
             });
         });
      }

@@ -19,6 +19,7 @@ class Burger {
     }
 
     clickHandler() {
+        
         this.menu.classList.toggle('active');
 
         const img = this.burger.querySelector('img');
@@ -153,6 +154,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   MainSLider: () => (/* binding */ MainSLider)
 /* harmony export */ });
 /* harmony import */ var _slider__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./slider */ "./src/js/modules/slider.js");
+/* harmony import */ var _burger__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./burger */ "./src/js/modules/burger.js");
 
 
 class MainSLider extends _slider__WEBPACK_IMPORTED_MODULE_0__.Slider {
@@ -214,7 +216,8 @@ class MainSLider extends _slider__WEBPACK_IMPORTED_MODULE_0__.Slider {
 
                 this.changeSlide(i, this.slideHeight, 'Y');
                 this.setActiveNav(i);
-                document.querySelector('nav').classList.remove('active');
+
+                new _burger__WEBPACK_IMPORTED_MODULE_1__.Burger('.burger', '.nav').clickHandler();
             });
         });
      }
