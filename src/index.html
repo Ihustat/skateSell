@@ -1,275 +1,296 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Lato:wght@400;700&family=Sedgwick+Ave+Display&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="css/style.min.css">
-    <script defer src="https://api-maps.yandex.ru/2.1/?apikey=835c12eb-20f4-444e-ace8-17873149ab7a&lang=ru_RU"
-    type="text/javascript">
-    </script>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Ultraboard</title>
+    <link
+      rel="apple-touch-icon"
+      sizes="180x180"
+      href="./images/icons/favicons/apple-touch-icon.png"
+    />
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="32x32"
+      href="./images/icons/favicons/favicon-32x32.png"
+    />
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="16x16"
+      href="./images/icons/favicons/favicon-16x16.png"
+    />
+    <link rel="manifest" href="/site.webmanifest" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Lato:wght@400;700&family=Sedgwick+Ave+Display&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="css/style.min.css" />
+    <script
+      defer
+      src="https://api-maps.yandex.ru/2.1/?apikey=835c12eb-20f4-444e-ace8-17873149ab7a&lang=ru_RU"
+      type="text/javascript"
+    ></script>
     <script defer src="js/bundle.js"></script>
-</head>
-<body>
-
+  </head>
+  <body>
     <div class="content">
-        <header class="header">
-            <div class="container header__wrapper">
-            <a href="#" class="logo">
-                <img class="logo__img" src="images/icons/logo.png" alt="logo">
-                Company
-            </a>
+      <header class="header">
+        <div class="container header__wrapper">
+          <a href="#" class="logo">
+            <img class="logo__img" src="images/icons/logo.png" alt="logo" />
+            Company
+          </a>
 
-            <div class="burger">
-                <img src="images/icons/burger-logo.png" alt="burger" class="burger__img">
-            </div>
+          <div class="burger">
+            <img
+              src="images/icons/burger-logo.png"
+              alt="burger"
+              class="burger__img"
+            />
+          </div>
 
-            <nav class="nav">
-                <ul class="nav__list">
-                    <li class="nav__item active">
-                        <a href="#" class="nav__link">Главная</a>
-                    </li>
+          <nav class="nav">
+            <ul class="nav__list">
+              <li class="nav__item active">
+                <a href="#" class="nav__link">Главная</a>
+              </li>
 
-                    <li class="nav__item">
-                        <a href="#" class="nav__link">Дизайн</a>
-                    </li>
+              <li class="nav__item">
+                <a href="#" class="nav__link">Дизайн</a>
+              </li>
 
-                    <li class="nav__item">
-                        <a href="#" class="nav__link">Характеристики</a>
-                    </li>
-                    
-                    <li class="nav__item">
-                        <a href="#" class="nav__link">Отзывы</a>
-                    </li>
+              <li class="nav__item">
+                <a href="#" class="nav__link">Характеристики</a>
+              </li>
 
-                    <li class="nav__item">
-                        <a href="#" class="nav__link">Где купить?</a>
-                    </li>
-                </ul>
-            </nav>
-            </div>
-        </header>
-        <div class="wrapper">
+              <li class="nav__item">
+                <a href="#" class="nav__link">Отзывы</a>
+              </li>
 
-                <section class="section main">
-                    <div class="container">
-                        <h1 class="title title_h1">
-                            UltraBoard
-                        </h1>
-                        <img src="images/main-photo.png" alt="skateboard" class="main__img">
-
-                        <div class="text main__descr">
-                            Ultraboard - соверменный и технологичный скетйборд, не имеющий аналогов на рынке
-                        </div>
-                    </div>
-                </section>
-
- <section class="section designs">
-                    <div class="container designs__wrapper">
-                        <div class="designs__about">
-                            <div class="title title_section">
-                                Наши дизайны
-                            </div>
-        
-                            <p class="text designs__text">
-                                Наши дизайнеры подготовили ряд вариантов раскраски вашего скетборда. Все они отличются особой креативностью и визуальным стилем. С ним вы точно будете выделяться в скейт-парке.
-                            </p>
-                            <p class="text designs__text">
-                               Кроме того все рисунки нанесены по особой технологии, благодаря который они не стираются даже при особо интенсивнгом катании. Ваша доска всегда будет выглядить отлично.
-                            </p>
-                        </div>
-
-                        <div class="designs__slider">
-                            <div class="designs__slider-box">
-                                <div class="designs__slide">
-                                    <img src="images/designs/design-1.png" alt="#" class="designs__slide-img">
-                                </div>
-                                <div class="designs__slide">
-                                    <img src="images/designs/design-2.png" alt="#" class="designs__slide-img">
-                                </div>
-                                <div class="designs__slide">
-                                    <img src="images/designs/design-3.png" alt="#" class="designs__slide-img">
-                                </div>
-                            </div>
-                            <div class="designs__slider-arrows">
-                                <div class="designs__slider-arrow designs__slider-prev">
-                                    <img src="images//icons/arrow-left.svg" alt="left arrow">
-                                </div>
-                                <div class="designs__slider-arrow design__slider-nxt">
-                                    <img src="images//icons/arrow-right.svg" alt="right arrow">
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </section>
-
-                    <section class="section features">
-                    <div class="container">
-                        <div class="title title_section">
-                            Характеристики
-                        </div>
-
-                    <div class="features__wrapper">
-                                <img src="images/options.png" alt="skateboard" class="features__img">
-                                <div class="features__item">
-                                    <div class="features__item-descr">
-                                        <div class="title title_fz21">
-                                            Колёса
-                                        </div>
-                                        <div class="features__item-text">
-                                            Колёса классической формы из высокопрочного уретана Formula 4 - нвого материала, обладающего непревзойденной стойкостбю к истиранию.
-                                        </div>
-                                    </div>
-                                    <div class="line-dot">
-                                    </div>
-                                    <div class="line-skew"></div>
-                                </div>
-
-                                <div class="features__item features__item_tr">
-                                    <div class="features__item-descr">
-                                        <div class="title title_fz21">
-                                            Подвеска
-                                        </div>
-                                        <div class="features__item-text">
-                                            Подвеска запекается при высокой температуре и иметт алюминиевый хангер и базу.
-                                        </div>
-                                    </div>
-                                    <div class="line-dot">
-                                    </div>
-                                    <div class="line-skew"></div>
-                                </div>
-
-                                <div class="features__item features__item_mr">
-                                    <div class="features__item-descr">
-                                        <div class="title title_fz21">
-                                            Дека
-                                        </div>
-                                        <div class="features__item-text">
-                                            Дека из 7-слойной конструкции из древесины канадского клена. Призведена в Испании.
-                                        </div>
-                                    </div>
-                                    <div class="line-dot">
-                                    </div>
-                                    <div class="line-skew"></div>
-                                </div>
-
-                                <div class="features__item features__item_bl">
-                                    <div class="features__item-descr">
-                                        <div class="title title_fz21">
-                                            Подшипники
-                                        </div>
-                                        <div class="features__item-text">
-                                            Долговечные и надежные. Предварительно смазаны специальной смазкой Speed Cream.
-                                        </div>
-                                    </div>
-                                    <div class="line-dot">
-                                    </div>
-                                    <div class="line-skew"></div>
-                                </div>
-
-                        </div>
-                    </div>
-                </section>
-
-                <section class="section reviews">
-                    <div class="container">
-                        <div class="title title_section">
-                            Отзывы
-                        </div>
-
-                        <div class="reviews__slider-wrapper">
-                            <div class="reviews__slider">
-                                <div class="reviews__slider-main">
-                                    <div class="reviews__main-slide active">
-                                        Отличный скейт, который помог мне спрогрессировать и повысить стабильность моих трюков
-                                    </div>
-                                    <div class="reviews__main-slide">
-                                        Яркий принт, качественно собран, все характеристики соответствуют описанию. Идеально подойдет для тренировок на рампах и выполнения трюков. Брать можно. День катаний ничего критичного не выявил.
-                                    </div>
-                                    <div class="reviews__main-slide">
-                                       Хорошая доска. Стабильные подвески. Идеальный ход подшипников.
-                                    </div>
-                                    <div class="reviews__main-slide">
-                                         Лучшая доска за 5 лет катания. Такого качества ещё не встречала. Отлично чувствуется под ногами, а канкейв помогает контролировать доску для высокой стабильности трюков.
-                                    </div>
-                                </div>
-    
-                                <div class="reviews__slider-dots">
-                                    <div class="reviews__dots-slide active">
-                                        <img src="images//reviews/reviews-1.jpg" alt="">
-                                        <div class="reviews__dots-name">Виктор Носов</div>
-                                        <div class="slider-line"></div>
-                                    </div>
-                                    <div class="reviews__dots-slide">
-                                        <img src="images//reviews/reviews-2.jpg" alt="">
-                                        <div class="reviews__dots-name">Алина Романова</div>
-                                    </div>
-                                    <div class="reviews__dots-slide">
-                                        <img src="images//reviews/reviews-3.jpg" alt="">
-                                        <div class="reviews__dots-name">Саша Бутов</div>
-                                    </div>
-                                    <div class="reviews__dots-slide">
-                                        <img src="images//reviews/reviews-4.jpg" alt="">
-                                        <div class="reviews__dots-name">Полина Дягтерева</div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </section>
-
-               <section class="section buy">
-                    <div class="container">
-                        <div class="title title_section">
-                            Где купить
-                        </div>
-
-                        <div class="buy__wrapper">
-                            <div class="places">
-                                <div class="place" data-long="45.042742" data-lat="38.975199">
-                                    <div class="place__tip">Нажми, чтобы увидеть на карте!</div>
-                                    <div class="place__name">
-                                        Cherdak
-                                    </div>
-
-                                    <div class="place__adress">
-                                        ул. Хаккурате, 4
-                                    </div>
-                                </div>
-                                <div class="place" data-long="45.056053" data-lat="38.978960">
-                                    <div class="place__tip">Нажми, чтобы увидеть на карте!</div>
-                                    <div class="place__name">
-                                        Tropa
-                                    </div>
-                                    <div class="place__adress">
-                                        ул. имени Дзержинского, 3/2
-                                    </div>
-                                </div>
-                                <div class="place" data-long="45.032477" data-lat="39.000349">
-                                    <div class="place__tip">Нажми, чтобы увидеть на карте!</div>
-                                    <div class="place__name">
-                                        Tochka
-                                    </div>
-                                    <div class="place__adress">
-                                        ул. Будённого, 327
-                                    </div>
-                                </div>
-                            </div>
-                            <div id="map" class="map">
-
-                            </div>
-                        </div>
-
-
-                    </div>
-                </section>
+              <li class="nav__item">
+                <a href="#" class="nav__link">Где купить?</a>
+              </li>
+            </ul>
+          </nav>
         </div>
+      </header>
+      <div class="wrapper">
+        <section class="section main">
+          <div class="container">
+            <h1 class="title title_h1">UltraBoard</h1>
+            <img
+              src="images/main-photo.png"
+              alt="skateboard"
+              class="main__img"
+            />
+
+            <div class="text main__descr">
+              Ultraboard - соверменный и технологичный скетйборд, не имеющий
+              аналогов на рынке
+            </div>
+          </div>
+        </section>
+
+        <section class="section designs">
+          <div class="container designs__wrapper">
+            <div class="designs__about">
+              <div class="title title_section">Наши дизайны</div>
+
+              <p class="text designs__text">
+                Наши дизайнеры подготовили ряд вариантов раскраски вашего
+                скетборда. Все они отличются особой креативностью и визуальным
+                стилем. С ним вы точно будете выделяться в скейт-парке.
+              </p>
+              <p class="text designs__text">
+                Кроме того все рисунки нанесены по особой технологии, благодаря
+                который они не стираются даже при особо интенсивнгом катании.
+                Ваша доска всегда будет выглядить отлично.
+              </p>
+            </div>
+
+            <div class="designs__slider">
+              <div class="designs__slider-box">
+                <div class="designs__slide">
+                  <img
+                    src="images/designs/design-1.png"
+                    alt="#"
+                    class="designs__slide-img"
+                  />
+                </div>
+                <div class="designs__slide">
+                  <img
+                    src="images/designs/design-2.png"
+                    alt="#"
+                    class="designs__slide-img"
+                  />
+                </div>
+                <div class="designs__slide">
+                  <img
+                    src="images/designs/design-3.png"
+                    alt="#"
+                    class="designs__slide-img"
+                  />
+                </div>
+              </div>
+              <div class="designs__slider-arrows">
+                <div class="designs__slider-arrow designs__slider-prev">
+                  <img src="images//icons/arrow-left.svg" alt="left arrow" />
+                </div>
+                <div class="designs__slider-arrow design__slider-nxt">
+                  <img src="images//icons/arrow-right.svg" alt="right arrow" />
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <section class="section features">
+          <div class="container">
+            <div class="title title_section">Характеристики</div>
+
+            <div class="features__wrapper">
+              <img
+                src="images/options.png"
+                alt="skateboard"
+                class="features__img"
+              />
+              <div class="features__item">
+                <div class="features__item-descr">
+                  <div class="title title_fz21">Колёса</div>
+                  <div class="features__item-text">
+                    Колёса классической формы из высокопрочного уретана Formula
+                    4 - нвого материала, обладающего непревзойденной стойкостбю
+                    к истиранию.
+                  </div>
+                </div>
+                <div class="line-dot"></div>
+                <div class="line-skew"></div>
+              </div>
+
+              <div class="features__item features__item_tr">
+                <div class="features__item-descr">
+                  <div class="title title_fz21">Подвеска</div>
+                  <div class="features__item-text">
+                    Подвеска запекается при высокой температуре и иметт
+                    алюминиевый хангер и базу.
+                  </div>
+                </div>
+                <div class="line-dot"></div>
+                <div class="line-skew"></div>
+              </div>
+
+              <div class="features__item features__item_mr">
+                <div class="features__item-descr">
+                  <div class="title title_fz21">Дека</div>
+                  <div class="features__item-text">
+                    Дека из 7-слойной конструкции из древесины канадского клена.
+                    Призведена в Испании.
+                  </div>
+                </div>
+                <div class="line-dot"></div>
+                <div class="line-skew"></div>
+              </div>
+
+              <div class="features__item features__item_bl">
+                <div class="features__item-descr">
+                  <div class="title title_fz21">Подшипники</div>
+                  <div class="features__item-text">
+                    Долговечные и надежные. Предварительно смазаны специальной
+                    смазкой Speed Cream.
+                  </div>
+                </div>
+                <div class="line-dot"></div>
+                <div class="line-skew"></div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <section class="section reviews">
+          <div class="container">
+            <div class="title title_section">Отзывы</div>
+
+            <div class="reviews__slider-wrapper">
+              <div class="reviews__slider">
+                <div class="reviews__slider-main">
+                  <div class="reviews__main-slide active">
+                    Отличный скейт, который помог мне спрогрессировать и
+                    повысить стабильность моих трюков
+                  </div>
+                  <div class="reviews__main-slide">
+                    Яркий принт, качественно собран, все характеристики
+                    соответствуют описанию. Идеально подойдет для тренировок на
+                    рампах и выполнения трюков. Брать можно. День катаний ничего
+                    критичного не выявил.
+                  </div>
+                  <div class="reviews__main-slide">
+                    Хорошая доска. Стабильные подвески. Идеальный ход
+                    подшипников.
+                  </div>
+                  <div class="reviews__main-slide">
+                    Лучшая доска за 5 лет катания. Такого качества ещё не
+                    встречала. Отлично чувствуется под ногами, а канкейв
+                    помогает контролировать доску для высокой стабильности
+                    трюков.
+                  </div>
+                </div>
+
+                <div class="reviews__slider-dots">
+                  <div class="reviews__dots-slide active">
+                    <img src="images//reviews/reviews-1.jpg" alt="" />
+                    <div class="reviews__dots-name">Виктор Носов</div>
+                    <div class="slider-line"></div>
+                  </div>
+                  <div class="reviews__dots-slide">
+                    <img src="images//reviews/reviews-2.jpg" alt="" />
+                    <div class="reviews__dots-name">Алина Романова</div>
+                  </div>
+                  <div class="reviews__dots-slide">
+                    <img src="images//reviews/reviews-3.jpg" alt="" />
+                    <div class="reviews__dots-name">Саша Бутов</div>
+                  </div>
+                  <div class="reviews__dots-slide">
+                    <img src="images//reviews/reviews-4.jpg" alt="" />
+                    <div class="reviews__dots-name">Полина Дягтерева</div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <section class="section buy">
+          <div class="container">
+            <div class="title title_section">Где купить</div>
+
+            <div class="buy__wrapper">
+              <div class="places">
+                <div class="place" data-long="45.042742" data-lat="38.975199">
+                  <div class="place__tip">Нажми, чтобы увидеть на карте!</div>
+                  <div class="place__name">Cherdak</div>
+
+                  <div class="place__adress">ул. Хаккурате, 4</div>
+                </div>
+                <div class="place" data-long="45.056053" data-lat="38.978960">
+                  <div class="place__tip">Нажми, чтобы увидеть на карте!</div>
+                  <div class="place__name">Tropa</div>
+                  <div class="place__adress">ул. имени Дзержинского, 3/2</div>
+                </div>
+                <div class="place" data-long="45.032477" data-lat="39.000349">
+                  <div class="place__tip">Нажми, чтобы увидеть на карте!</div>
+                  <div class="place__name">Tochka</div>
+                  <div class="place__adress">ул. Будённого, 327</div>
+                </div>
+              </div>
+              <div id="map" class="map"></div>
+            </div>
+          </div>
+        </section>
+      </div>
     </div>
-    
-
-
-</body>
+  </body>
 </html>

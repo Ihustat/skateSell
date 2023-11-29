@@ -13,25 +13,41 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   Burger: () => (/* binding */ Burger)
 /* harmony export */ });
 class Burger {
-    constructor(burger, menu) {
-        this.burger = document.querySelector(burger);
-        this.menu = document.querySelector(menu);
+  constructor(burger, menu) {
+    this.burger = document.querySelector(burger);
+    this.menu = document.querySelector(menu);
+  }
+
+  clickHandler() {
+    this.menu.classList.toggle('active');
+
+    const img = this.burger.querySelector('img');
+
+    this.menu.classList.contains('active')
+      ? (img.src = 'images/icons/break-burger-logo.png')
+      : (img.src = 'images/icons/burger-logo.png');
+  }
+
+  menuHandler(e) {
+    const target = e.target;
+
+    if (
+      target &&
+      (target.classList.contains('.nav__item') || target.closest('.nav__item'))
+    ) {
+      this.clickHandler();
     }
+  }
 
-    clickHandler() {
-        
-        this.menu.classList.toggle('active');
+  initHandler() {
+    this.burger.addEventListener('click', this.clickHandler.bind(this));
 
-        const img = this.burger.querySelector('img');
-
-        this.menu.classList.contains('active') ? img.src = 'images/icons/break-burger-logo.png' : img.src = 'images/icons/burger-logo.png';
-
-    }
-
-    initHandler() {
-        this.burger.addEventListener('click', this.clickHandler.bind(this));
-    }
+    this.menu.addEventListener('click', (e) => {
+      this.menuHandler(e);
+    });
+  }
 }
+
 
 /***/ }),
 
@@ -158,81 +174,87 @@ __webpack_require__.r(__webpack_exports__);
 
 
 class MainSLider extends _slider__WEBPACK_IMPORTED_MODULE_0__.Slider {
-    constructor(container, slides, navMenu, navItems) {
-        super(container, slides);
-        this.navMenu = document.querySelector(navMenu);
-        this.navItems = document.querySelectorAll(navItems);
-        this.slideHeight = parseInt(window.getComputedStyle(this.slides[0]).height);
-        this.touchStart;
-        this.touchEnd;
+  constructor(container, slides, navMenu, navItems) {
+    super(container, slides);
+    this.navMenu = document.querySelector(navMenu);
+    this.navItems = document.querySelectorAll(navItems);
+    this.slideHeight = parseInt(window.getComputedStyle(this.slides[0]).height);
+    this.touchStart;
+    this.touchEnd;
+  }
+
+  checkCounter(n) {
+    this.counter += n;
+    if (this.counter > this.slides.length - 1 || this.counter < 0)
+      this.counter -= n;
+  }
+
+  setActiveNav(n) {
+    this.navItems.forEach((item) => {
+      item.classList.remove('active');
+    });
+
+    this.navItems[n].classList.add('active');
+  }
+
+  changeHandler(e) {
+    if (!e.target.closest('nav') && e.target.tagName !== 'YMAPS') {
+      if (e.deltaY === 100 || this.touchStart > this.touchEnd) {
+        this.changeSlide(1, this.slideHeight, 'Y');
+      }
+
+      if (e.deltaY === -100 || this.touchEnd > this.touchStart) {
+        this.changeSlide(-1, this.slideHeight, 'Y');
+      }
+
+      this.setActiveNav(this.counter);
     }
+    setTimeout(() => {
+      this.initHandler();
+    }, 300);
+  }
 
-    checkCounter(n) {
-        this.counter += n;
-        if (this.counter > this.slides.length - 1 || this.counter < 0) this.counter -= n;
-    }
+  touchStartHandler(e) {
+    this.touchStart = e.touches[0].clientY;
+  }
 
-    setActiveNav(n) {
-        this.navItems.forEach(item => {
-            item.classList.remove('active');
-        });
+  touchEndHandler(e) {
+    this.touchEnd = e.changedTouches[0].clientY;
+    this.changeHandler(e);
+  }
 
-        this.navItems[n].classList.add('active');
-    }
+  clickHandler() {
+    this.navItems.forEach((item, i) => {
+      item.addEventListener('click', (e) => {
+        e.preventDefault();
 
-    changeHandler(e) {
-        
-        if (!e.target.closest('nav') && e.target.tagName !== 'YMAPS') {
-            if (e.deltaY === 100 || this.touchStart > this.touchEnd) {
-                this.changeSlide(1, this.slideHeight, 'Y');
-              };
-            
-              if (e.deltaY === -100 || this.touchEnd > this.touchStart) {
-                this.changeSlide(-1, this.slideHeight, 'Y');
-            };
-    
-            this.setActiveNav(this.counter);
-        };
-        setTimeout(() => {
-            this.initHandler();
-        }, 300);
-     }
+        this.counter = 0;
 
-     touchStartHandler(e) {
-        this.touchStart = e.touches[0].clientY
-     }
+        this.changeSlide(i, this.slideHeight, 'Y');
+        this.setActiveNav(i);
 
-     touchEndHandler(e) {
-       this.touchEnd = e.changedTouches[0].clientY
-       this.changeHandler(e);
-     }
+        new _burger__WEBPACK_IMPORTED_MODULE_1__.Burger('.burger', '.nav').clickHandler();
+      });
+    });
+  }
 
-     clickHandler() {
-        this.navItems.forEach((item, i) => {
-            item.addEventListener('click', (e) => {
-                e.preventDefault();
+  initHandler() {
+    document.addEventListener('wheel', this.changeHandler.bind(this), {
+      once: true,
+    });
 
-                this.counter = 0;
+    document.addEventListener('touchstart', this.touchStartHandler.bind(this), {
+      once: true,
+    });
 
-                this.changeSlide(i, this.slideHeight, 'Y');
-                this.setActiveNav(i);
+    document.addEventListener('touchend', this.touchEndHandler.bind(this), {
+      once: true,
+    });
 
-                new _burger__WEBPACK_IMPORTED_MODULE_1__.Burger('.burger', '.nav').clickHandler();
-            });
-        });
-     }
-
-     initHandler() {
-        document.addEventListener('wheel', this.changeHandler.bind(this),  {once: true });
-
-        document.addEventListener('touchstart', this.touchStartHandler.bind(this), {once: true });
-
-        document.addEventListener('touchend', this.touchEndHandler.bind(this), {once: true });
-
-        this.clickHandler();
-     }
-
+    this.clickHandler();
+  }
 }
+
 
 /***/ }),
 
